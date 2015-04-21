@@ -1,4 +1,4 @@
-FROM sctrcdr/ubuntu-php
+FROM sctrcdr/php-base
 MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 
 RUN apt-get install -y php5-gd php5-ldap php5-imap
