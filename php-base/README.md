@@ -1,0 +1,1 @@
+The PHP bits of a LAMP stack on Ubuntu. 
