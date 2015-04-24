@@ -14,6 +14,7 @@ RUN chown -R www-data:www-data limesurvey
 
 COPY apache-limesurvey.conf /etc/apache2/sites-available/limesurvey.conf
 
-RUN a2dissite 000-default && a2ensite limesurvey
+RUN a2dissite 000-default
+RUN a2ensite limesurvey
 
 RUN supervisorctl restart apache2

@@ -1,26 +1,22 @@
-FROM sctrcdr/ubuntu-base
+FROM php:5.6-apache
 MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 
-ENV DEBIAN_FRONTEND noninteractive
+COPY policy-rc.d /usr/sbin/policy-rc.d
 
 RUN apt-get update
-RUN apt-get upgrade -q -y
-RUN apt-get install -y apache2 libapache2-mod-php5 php5-mysql pwgen php-apc php5-mcrypt
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN apt-get install -y supervisor
 RUN apt-get clean
+
+RUN a2enmod rewrite
+
+WORKDIR /var/www
+
+RUN a2ensite 000-default
 
 COPY run.sh /run.sh
 COPY start-apache2.sh /start-apache2.sh
 COPY supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 
-COPY apache_default /etc/apache2/sites-available/000-default.conf
-RUN a2enmod rewrite
+EXPOSE 80
 
-RUN rm -f /var/www/html/index.html
-COPY index.php /var/www/html/index.php
-
-ENV PHP_UPLOAD_MAX_FILESIZE 10M
-ENV PHP_POST_MAX_SIZE 10M
-
-EXPOSE 80 443
 CMD ["/run.sh"]

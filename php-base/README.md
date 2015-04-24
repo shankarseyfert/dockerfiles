@@ -1,1 +1,1 @@
-The PHP bits of a LAMP stack on Ubuntu. 
+A LimeSurvey build.
