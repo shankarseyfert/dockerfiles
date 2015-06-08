@@ -142,4 +142,8 @@ if (!$mysql->query('CREATE DATABASE IF NOT EXISTS `' . $mysql->real_escape_strin
 $mysql->close();
 EOPHP
 
+<<<<<<< HEAD
 exec "$@"
+=======
+exec "$@"
+>>>>>>> 0fd474c53037e81e8363dcfaa25e0e4c6c27f929
