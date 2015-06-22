@@ -1,4 +1,4 @@
-FROM sctrcdr/ubuntu-base
+FROM ingeus/ubuntu-base
 MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 
 # Add a repo where OpenJDK can be found.
