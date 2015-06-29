@@ -9,8 +9,6 @@ RUN tar -xvf limesurvey.tar.gz
 RUN rm -f limesurvey.tar.gz
 RUN chown -R www-data:www-data limesurvey
 
-VOLUME /var/www/limesurvey
-
 COPY apache-limesurvey.conf /etc/apache2/sites-available/limesurvey.conf
 
 RUN a2dissite 000-default
