@@ -1,13 +1,8 @@
 FROM ingeus/php-base
 MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 
-RUN apt-get install -y php5-gd php5-ldap php5-imap
-RUN apt-get clean
-RUN php5enmod imap
-
 WORKDIR /var/www
 
-# ADD https://www.limesurvey.org/en/stable-release/finish/25-latest-stable-release/1233-limesurvey205plus-build150413-tar-gz limesurvey.tar.gz
 ADD https://www.limesurvey.org/en/stable-release?download=1309:limesurvey206plus-build150629targz limesurvey.tar.gz
 
 RUN tar -xvf limesurvey.tar.gz

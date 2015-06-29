@@ -4,11 +4,14 @@ MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 COPY policy-rc.d /usr/sbin/policy-rc.d
 
 RUN apt-get update
-RUN apt-get install -y supervisor php5-gd php5-ldap php5-imap libpng12-dev libjpeg-dev
+RUN apt-get install -y supervisor php5-gd php5-ldap php5-imap libpng12-dev libjpeg-dev 
 RUN rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install gd
+	&& docker-php-ext-install gd pdo pdo_mysql
 RUN apt-get clean
+
+RUN php5enmod imap
+RUN php5enmod ldap
 
 RUN a2enmod rewrite
 
