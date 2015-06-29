@@ -1,4 +1,4 @@
-FROM ingeus/php-base
+FROM docker.ingeus.aws/ingeus/php-base:1.0
 MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 
 WORKDIR /var/www
