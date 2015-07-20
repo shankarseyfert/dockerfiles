@@ -69,6 +69,7 @@ if [ ! -e wp-config.php ]; then
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
 	$_SERVER['HTTPS'] = 'on';
 }
+
 EOPHP
 	chown www-data:www-data wp-config.php
 fi
@@ -114,8 +115,11 @@ done
 TERM=dumb php -- "$WORDPRESS_DB_HOST" "$WORDPRESS_DB_USER" "$WORDPRESS_DB_PASSWORD" "$WORDPRESS_DB_NAME" <<'EOPHP'
 <?php
 // database might not exist, so let's try creating it (just to be safe)
+
 $stderr = fopen('php://stderr', 'w');
+
 list($host, $port) = explode(':', $argv[1], 2);
+
 $maxTries = 10;
 do {
 	$mysql = new mysqli($host, $argv[2], $argv[3], '', (int)$port);
@@ -128,11 +132,13 @@ do {
 		sleep(3);
 	}
 } while ($mysql->connect_error);
+
 if (!$mysql->query('CREATE DATABASE IF NOT EXISTS `' . $mysql->real_escape_string($argv[4]) . '`')) {
 	fwrite($stderr, "\n" . 'MySQL "CREATE DATABASE" Error: ' . $mysql->error . "\n");
 	$mysql->close();
 	exit(1);
 }
+
 $mysql->close();
 EOPHP
 
