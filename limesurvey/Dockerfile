@@ -7,7 +7,7 @@ ADD https://www.limesurvey.org/en/stable-release?download=1309:limesurvey206plus
 RUN tar -xvf limesurvey.tar.gz
 RUN rm -f limesurvey.tar.gz
 
-RUN chown -R www-data:www-data /var/www/limesurvey && chmod -R 755 /var/www/limesurvey && chmod -R 770 /var/www/limesurvey/upload && chmod -R 770 /var/www/limesurvey/tmp
+RUN mkdir upload && mkdir tmp && chown -R www-data:www-data . && chmod -R 755 . && chmod -R 770 upload && chmod -R 770 tmp
 
 COPY apache-limesurvey.conf /etc/apache2/sites-available/limesurvey.conf
 
