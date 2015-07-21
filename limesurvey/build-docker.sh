@@ -1,5 +1,9 @@
 #!/bin/bash
 set -e
-echo "Building Docker image: limesurvey"
 
-docker build -t ingeus/limesurvey:1.0 .
+VERSION=$1
+
+echo "Building Docker image: ingeus/limesurvey:$VERSION"
+
+docker build -t ingeus/limesurvey:$VERSION .
+
