@@ -7,4 +7,4 @@ WORKDIR /root
 
 ADD usr /usr
 
-RUN apt-get update && apt-get install -y curl git supervisor
+RUN apt-get update && apt-get install -y curl git supervisor unzip nano

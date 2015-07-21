@@ -1,21 +1,13 @@
 FROM ingeus/php-base:1.0
 MAINTAINER Stephen Masters <steve@scattercode.co.uk>
 
-RUN apt-get update
-RUN apt-get install -y php5-gd php5-ldap php5-imap unzip
-RUN apt-get clean
-RUN php5enmod imap
-
 WORKDIR /var/www/limesurvey
-
-# ADD https://www.limesurvey.org/en/downloads/category/24-archived-releases?download=1285:limesurvey205plus-build150520zip limesurvey.zip
-# RUN unzip limesurvey.zip && rm -rf limesurvey.zip
 
 ADD https://www.limesurvey.org/en/stable-release?download=1309:limesurvey206plus-build150629targz limesurvey.tar.gz
 RUN tar -xvf limesurvey.tar.gz
 RUN rm -f limesurvey.tar.gz
 
-RUN chown -R www-data:www-data .
+RUN chown -R www-data:www-data /var/www/limesurvey && chmod -R 755 /var/www/limesurvey && chmod -R 770 /var/www/limesurvey/upload && chmod -R 770 /var/www/limesurvey/tmp
 
 COPY apache-limesurvey.conf /etc/apache2/sites-available/limesurvey.conf
 
